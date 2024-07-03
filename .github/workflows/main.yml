@@ -19,6 +19,7 @@ jobs:
         run: |
           ssh -o "StrictHostKeyChecking no" lavalink@lavalink "
             killall node
+            echo "Killed node processes"
           "
 
       - name: runcode
@@ -28,6 +29,7 @@ jobs:
             git pull
             npm i
             node .
+            echo "Done"
           "
 
       - name: finis

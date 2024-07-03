@@ -1,6 +1,24 @@
-  name: Tailscale
-  uses: tailscale/github-action@v2
-  with:
-    oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
-    oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
-    tags: tag:lavalik
+name: Deploy to vps via tailscale
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-via-tailscale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: connect tailscale
+        uses: tailscale/github-action@v2
+        with:
+          oauth-client-id: ${{ secrets.TS_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
+          tags: tag:lavalik
+
+
+      - name: do deploy thing
+        run: |
+          ssh -o "StrictHostKeyChecking no" lavalink@lavalink "
+            cd "/home/lavalink/EtherMusic/"
+            git pull
+            node .

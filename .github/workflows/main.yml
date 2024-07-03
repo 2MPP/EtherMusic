@@ -22,3 +22,4 @@ jobs:
             cd "/home/lavalink/EtherMusic/"
             git pull
             node .
+          "

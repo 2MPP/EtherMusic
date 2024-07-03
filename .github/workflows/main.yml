@@ -18,7 +18,7 @@ jobs:
       - name: Kill node process
         run: |
           ssh -o "StrictHostKeyChecking no" lavalink@lavalink "
-            killall node
+            systemctl stop bot.service
             echo "Killed node processes"
           "
 
@@ -27,10 +27,9 @@ jobs:
           ssh -o "StrictHostKeyChecking no" lavalink@lavalink "
             cd "/home/lavalink/EtherMusic/"
             git pull
-            npm i
-            node .
-            echo "Done"
-            exit
+            npm i 
+            systemctl start bot.service
+
           "
 
       - name: finis

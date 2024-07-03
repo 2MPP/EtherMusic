@@ -48,27 +48,6 @@ module.exports = async (client) => {
   client.manager.on("disconnect", (__, _, node) => {
     console.log(`Lavalink node ${node.id} disconnected`);
   });
-
-  const exec = require("child_process").exec;
-  setInterval(() => {
-    exec("git pull", (error, stdout) => {
-      const response = error || stdout;
-      if (!error) {
-        if (response.includes("Already up to date.")) {
-          //console.log("Bot already up to date. No changes since last pull");
-        } else {
-          console.log("pulled");
-          client.channels.cache
-            .get("1258108956300148807")
-            .send(
-              "changes to the github detected ```\n" +
-                response +
-                "\n\n``` make sure to restart the bot"
-            );
-        }
-      }
-    });
-  }, 30000);
 };
 
 // setInterval(() => {

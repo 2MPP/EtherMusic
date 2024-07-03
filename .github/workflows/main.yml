@@ -16,7 +16,7 @@ jobs:
           tags: tag:ci
 
 
-      - name: do deploy thing
+      - name: runcode
         run: |
           ssh -o "StrictHostKeyChecking no" lavalink@lavalink "
             cd "/home/lavalink/EtherMusic/"

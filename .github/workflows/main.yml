@@ -15,11 +15,20 @@ jobs:
           oauth-secret: ${{ secrets.TS_OAUTH_SECRET }}
           tags: tag:ci
 
+      - name: Kill node process
+        run: |
+          ssh -o "StrictHostKeyChecking no" lavalink@lavalink "
+            killall node
+          "
 
       - name: runcode
         run: |
           ssh -o "StrictHostKeyChecking no" lavalink@lavalink "
             cd "/home/lavalink/EtherMusic/"
             git pull
+            npm i
             node .
           "
+
+      - name: finis
+        run: echo "Finished"

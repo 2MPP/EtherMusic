@@ -47,7 +47,6 @@ module.exports = {
         serverQueue.player.play(serverQueue.queue[0]);
       }
     } else if (base64.loadType == "search") {
-      console.log(base64);
       serverQueue.queue.push(base64.data[0].encoded);
       if (serverQueue.queue.length == 1) {
         serverQueue.player.play(serverQueue.queue[0]);

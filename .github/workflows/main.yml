@@ -30,6 +30,7 @@ jobs:
             npm i
             node .
             echo "Done"
+            exit
           "
 
       - name: finis

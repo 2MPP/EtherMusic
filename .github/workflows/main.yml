@@ -28,6 +28,7 @@ jobs:
             cd "/home/lavalink/EtherMusic/"
             git pull
             npm i 
+            run: echo "Start bot"
             echo '${{ secrets.VM_PASSWORD }}' | /usr/bin/sudo --stdin /usr/bin/systemctl stop bot.service
 
           "

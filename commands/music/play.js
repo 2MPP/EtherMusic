@@ -1,4 +1,10 @@
-const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+const {
+  SlashCommandBuilder,
+  EmbedBuilder,
+  ButtonBuilder,
+  ButtonStyle,
+  ActionRowBuilder,
+} = require("discord.js");
 const { searchsong, playsong } = require("../../functions");
 const { Rest } = require("lavacord");
 
@@ -21,6 +27,21 @@ module.exports = {
         ephemeral: true,
       });
     }
+
+    const skip = new ButtonBuilder()
+      .setCustomId("skip")
+      .setLabel("Skip")
+      .setStyle(ButtonStyle.Primary);
+    const shuffle = new ButtonBuilder()
+      .setCustomId("shuffle")
+      .setLabel("Shuffle")
+      .setStyle(ButtonStyle.Primary);
+    const stop = new ButtonBuilder()
+      .setCustomId("stop")
+      .setLabel("Stop")
+      .setStyle(ButtonStyle.Danger);
+
+    const row = new ActionRowBuilder().addComponents(skip, shuffle, stop);
 
     const node = client.manager.idealNodes[0];
     if (!client.queue[interaction.guild.id]) {
@@ -64,7 +85,7 @@ module.exports = {
             .setImage(info.info.artworkUrl);
           const message = await client.channels.cache
             .get(serverQueue.chanelid.join(" "))
-            .send({ embeds: [NowPlaying] });
+            .send({ embeds: [NowPlaying], components: [row] });
 
           player.once("end", async (data) => {
             message.delete().catch(console.log);

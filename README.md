@@ -4,9 +4,9 @@
 
 # ToDo
 
-### Auto Pull from github
+### Auto Pull from github ✅
 
-### Buttons to skip pause
+### Buttons to skip pause ✅
 
 ### select menu for queue (possiably replace queue command)
 

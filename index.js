@@ -23,8 +23,10 @@ readdir("./events", (err, files) => {
 
 client.slashcommands = new Collection();
 client.buttons = new Collection();
+client.selects = new Collection();
 client.queue = new Collection();
 require("./handler/buttons.js")(client);
+require("./handler/selectmenuhandler.js")(client);
 
 ["command"].forEach((handler) => {
   require(`./handler/${handler}`)(client);
